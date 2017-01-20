@@ -1,0 +1,196 @@
+@import 'setup';
+@import 'variables';
+@import 'responsiveFont';
+
+
+.wrapper{
+	width: 70%;
+	max-width: 1100px;
+	margin: 0 auto;
+}
+body{
+	letter-spacing:1px;
+	font-family: 'Raleway', sans-serif;
+	font-weight:600;
+	color: $swWhite;
+	background-color:$swGrey;
+
+}
+
+
+
+
+h1, h2, h3, h4, h5, h6, p{
+	font-weight:600;
+	@include responsive-font(2vw, 16px, 50px);
+
+}
+header{
+	padding: 3% 0;
+	display: flex;
+	// justify-content: center;
+	// align-items: center;
+	flex-direction: column;
+	.title{
+		@include responsive-font(8vw, 80px, 150px);
+		font-family: 'Amatica SC', cursive;
+		text-align: center;
+		margin-bottom: 0;
+	}
+	.subtitle{
+		@include responsive-font(3vw, 20px, 50px);
+		font-family: 'Amatica SC', cursive;
+		text-align: center;
+		// margin: 0;
+	}
+}
+
+.sweater-info{
+	// padding: 10% 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	.search{
+		display: flex;
+		// flex-direction: column;
+		// align-items: center;
+		flex-wrap: wrap;
+		justify-content: center;
+		label{
+			@include responsive-font(3vw, 20px, 50px);
+			width: 100%;
+			text-align: center;
+		}
+		input[type="text"]{
+			width: 40%;
+			padding: 2%;
+		}
+		input[type="submit"]{
+			width: 10%;
+			padding: 2%;
+		    background: $swWhite;
+		    border: 1px solid $swWhite;
+		    @include responsive-font(1.2vw, 14px, 18px);
+			text-decoration: none;
+		    letter-spacing: 1px;
+		    text-align: center;
+		    color: $swDarkNight;
+		}
+		input[type="submit"]:focus{
+			background: darken($swWhite, 40%);
+			color: $swDarkNight;
+			border:none;
+			outline: none;
+		}
+		input[type="submit"]:hover{
+			background: darken($swWhite, 20%);
+			color: $swDarkNight;
+			border:1px solid darken($swWhite, 20%);
+			border:none;
+			 -o-transition:.5s;
+			-o-transition: background 0.7s linear;
+			-moz-transition: background 0.7s linear;
+			-khtml-transition: background 0.7s linear;
+			-webkit-transition: background 0.7s linear;
+			-ms-transition: background 0.7s linear;
+			transition: background 0.7s linear;
+		}
+		.warning{
+			display: none;
+		}
+	}
+	.output{
+		// display: flex;
+		// flex-direction: column;
+		// justify-content: center;
+		.button{
+			width: 40%;
+			margin: 5% 0;
+			padding: 2%;
+		    background: $swWhite;
+		    border: 1px solid $swWhite;
+		    @include responsive-font(1.2vw, 14px, 18px);
+			text-decoration: none;
+		    letter-spacing: 1px;
+		    text-align: center;
+		    color: $swDarkNight;
+		}
+		.button:focus{
+			background: darken($swWhite, 40%);
+			color: white;
+			border:none;
+			outline: none;
+		}
+		.button:hover{
+			background: darken($swWhite, 20%);
+			color: $swDarkNight;
+			border:1px solid darken($swWhite, 20%);
+			border:none;
+			 -o-transition:.5s;
+			-o-transition: background 0.7s linear;
+			-moz-transition: background 0.7s linear;
+			-khtml-transition: background 0.7s linear;
+			-webkit-transition: background 0.7s linear;
+			-ms-transition: background 0.7s linear;
+			transition: background 0.7s linear;
+		}
+
+	}
+	.sweater-pic{
+    	height: 300px;
+    	width: auto;
+    	img{
+    		height: 100%;
+    	}
+	}
+
+	
+}
+
+
+.twitter{
+	padding: 5% 0;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.footer{
+	flex-direction: column;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	p{
+		margin: 0;
+		a{
+			text-decoration: none;
+			color: $swWhite;
+		}
+	}
+}
+
+.sideicon{
+	display: none;
+}
+
+.output{
+	display: none;
+}
+
+// All Media Queries
+
+// Landscape phones and tablet
+@media (max-width: 767px) {
+	// turn off wrapper margin 
+	.wrapper{
+		width: 100%;
+	}
+    
+}
+ 
+// Landscape phones and down
+@media (max-width: 480px) {
+ 
+}
