@@ -96,7 +96,7 @@ header{
 			transition: background 0.7s linear;
 		}
 		.warning{
-			display: none;
+			opacity: 0;
 		}
 	}
 	.output{
@@ -126,7 +126,7 @@ header{
 			color: $swDarkNight;
 			border:1px solid darken($swWhite, 20%);
 			border:none;
-			 -o-transition:.5s;
+			 -o-transition:0.7s;
 			-o-transition: background 0.7s linear;
 			-moz-transition: background 0.7s linear;
 			-khtml-transition: background 0.7s linear;

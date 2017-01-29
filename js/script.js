@@ -1,17 +1,21 @@
 
  	var weatherWidget = {
  		weatherData : {},
+ 		apiKey: key, // reference to API key in separate file
  		init : function(){
- 			$('form.search').on('click',function(){
- 				$('div.warning').show();
- 				$('div.sweater-pic').show();
+ 			var $searchForm  = $('form.search'),
+ 				$warningMsg  = $('div.warning'),
+ 				$searchField = $(".search-field");
+			
+ 			$searchForm.on('click',function(){
+ 				$warningMsg.css('opacity', 1); // 'show' by adjusting opacity 
  			});
 
- 			$('form.search').on('submit', function(e){
+ 			$searchForm.on('submit', function(e){
  				e.preventDefault();
- 				var location = $(this).find(".search-field").val();
+ 				var location = $searchField.val();
  				weatherWidget.getWeather(location);
- 				$('div.warning').hide();
+ 				$warningMsg.css('opacity', 0); // 'hide' by adjusting opacity
  			});
 
  		console.log(weatherWidget, "weatherData");
@@ -21,12 +25,14 @@
  		getWeather : function(location){
  			var weatherLocation = encodeURIComponent(location);
 
-			$.ajax('http://api.wunderground.com/api/97b15225e4e42e58/conditions/q/'+ weatherLocation + '.json', {
+ 			// Add the API key to endpoint URLs
+			$.ajax('http://api.wunderground.com/api/' + weatherWidget.apiKey + '/conditions/q/'+ weatherLocation + '.json', {
 			 	type : 'GET',
 			 	dataType : 'jsonp', 
 			 	success : function(currentData){
+			 		console.log(currentData);
 			 		weatherWidget.parseData(currentData);
-			 		$.ajax('http://api.wunderground.com/api/97b15225e4e42e58/forecast/q/'+ weatherLocation + '.json', {
+			 		$.ajax('http://api.wunderground.com/api/' + weatherWidget.apiKey + '/forecast/q/'+ weatherLocation + '.json', {
 			 			type : 'GET',
 			 			dataType : 'jsonp',
 			 			success : function(forecastData){
@@ -55,81 +61,94 @@
  		},
 
  		updateDOM : function(){
- 			var conditions = "It's " + weatherWidget.weatherData.weather + " in " + weatherWidget.weatherData.city;
-			var temp = "The temp is " + weatherWidget.weatherData.temperature_string + " C";
-			var wind = "That wind factor " + weatherWidget.weatherData.wind + "km/hour";
-			var forecast = "Tomorrow's going to be " + weatherWidget.weatherData.tomorrow;
+ 			// Define variables whose values are known and will remain constant...
+			var conditions = weatherWidget.weatherData.weather,
+				city = weatherWidget.weatherData.city,
+				temp = weatherWidget.weatherData.temperature_string,
+				wind = weatherWidget.weatherData.wind,
+				tomorrow = weatherWidget.weatherData.tomorrow,
+				// ...and declare some variables to be defined later (non-constants)
+				suggestion, bgColor, color, image, weatherMood, tempFactor, windFactor;
 
-			//types of weather moods (conditions)
-			if(weatherWidget.weatherData.weather.search("Snow") !== -1){
-				conditions = conditions + " You might want to dig out that thick and cozy sweater because baby, it's cold outside!";
-				$('body').css({"background-color":"#355c7d", "color": "#f4f4f4"});
-				$('img.sweater').attr("src", "images/snow.png");
-			}else if(weatherWidget.weatherData.weather.search("Rain") !== -1){
-				conditions = conditions + " So don't forget to wear something waterproof!"
-				$('body').css({"background-color":"#6c5b7b", "color": "#f4f4f4"});
-				$('img.sweater').attr("src", "images/rain.png");
-			}else if(weatherWidget.weatherData.weather.search("Overcast") !== -1){
-				conditions = conditions + " So break out that oversized comfy sweater, you know the one you stole from your dad"
-				$('body').css({"background-color":"#9099a2", "color": "#f4f4f4"});
-				$('img.sweater').attr("src", "images/overcast.png");
-			}else if(weatherWidget.weatherData.weather.search("Mostly Cloudy") !== -1){
-				conditions = conditions + " It's pretty iffy out there! Bring an extra layer you might need it!"
-				$('body').css({"background-color":"#c06c84", "color": "#f4f4f4"});
-				$('img.sweater').attr("src", "images/cloudy.png");
-			}else if(weatherWidget.weatherData.weather.search("Clear") !== -1){
-				conditions = conditions + " Oh, yeah! Break out those seasonally questionable sunglasses, you're going to need them!"
-				$('body').css({"background-color":"#f8b195", "color": "#355c7d"});
-				$('img.sweater').attr("src", "images/clear.png");
-			}else if(weatherWidget.weatherData.weather.search("Drizzle") !== -1){
-				conditions = conditions + ", so wear a hat or bring your umbrella!"
-				$('body').css({"background-color":"#c06c84", "color": "#f4f4f4"});
-				$('img.sweater').attr("src", "images/rain.png");
-			}else if(weatherWidget.weatherData.weather.search("Fog") !== -1){
-				conditions = conditions + " a romantic and mysterious day calls for a cozy oversized sweater!"
-				$('body').css({"background-color":"#c06c84", "color": "#f4f4f4"});
-				$('img.sweater').attr("src", "images/rb-two-jackets.png");
-			}else {
-				conditions = conditions + ": hey, it's gonna be a good day!"	
-				$('body').css({"background-color":"#f8b195", "color": "#355c7d"});
-				$('img.sweater').attr("src", "images/rb-sweater-family.png");
+
+			switch (conditions) {
+				case "Snow":
+					suggestion = ". You might want to dig out that thick and cozy sweater because baby, it's cold outside!";
+					bgColor = "#355c7d";
+					color = "#f4f4f4";
+					image = "snow";
+					break;
+				case "Rain" :
+					suggestion = ", so don't forget to wear something waterproof!";
+					bgColor = "#6c5b7b";
+					color = "#f4f4f4";
+					image = "rain";
+					break;
+				case "Overcast":
+					suggestion = ", so break out that oversized comfy sweater, you know, the one you stole from your dad.";
+					bgColor = "#9099a2";
+					color = "#f4f4f4";
+					image = "overcast";
+					break;
+				case "Mostly Cloudy":
+					suggestion = ", sounds pretty iffy out there! Better bring an extra layer you might need it!";
+					bgColor = "#c06c84";
+					color = "#f4f4f4";
+					image = "cloudy";
+					break;
+				case "Clear":
+					suggestion = ". Oh, yeah! Break out those seasonally questionable sunglasses, you're going to need them!";
+					bgColor = "#f8b195";
+					color = "#355c7d";
+					image = "clear";
+					break;
+				case "Drizzle":
+					suggestion = ", so wear a hat or bring your umbrella!";
+					bgColor = "#c06c84";
+					color = "#f4f4f4";
+					image = "rain";
+					break;
+				case "Fog":
+					suggestion = ". A misty day calls for a cozy oversized sweater!";
+					bgColor = "#c06c84";
+					color = "#f4f4f4";
+					image = "options/rb-two-jackets";
+					break;
+				default:
+					suggestion = ": Hey, it's gonna be a good day!";
+					bgColor = "#f8b195";
+					color = "#355c7d";
+					image = "options/rb-sweater-family";
 			}
 
 
-			//temp factor
-			if(weatherWidget.weatherData.temperature_string === 0){
- 				temp = temp + ", zero-degree weather doesn't have to suck, add an oversized jacket!"
- 			}else if(weatherWidget.weatherData.temperature_string > 0){
- 				temp = temp + ", it's pretty cold out there and you will probably need a coat!"
- 			}else if(weatherWidget.weatherData.temperature_string > 10){
- 				temp = temp + ", try out a box jacket in strawberry, sky-blue or emerald"
- 			}else if(weatherWidget.weatherData.temperature_string > 15){
- 				temp = temp + ", time to get creative with transportation!"
- 			}else if(weatherWidget.weatherData.temperature_string > 22){
- 				temp = temp + ", time to let the layers drop!"
- 			}else if(weatherWidget.weatherData.temperature_string > 30){
- 				temp = temp + ", it's hot and you probably don't need a sweater"
- 			}else {temp = temp + " and cold weather doesn't have to suck, add an oversized coat! (and a ton of other cozy things)"
- 			}
+			weatherMood = "It's " + conditions.toLowerCase() + " in " + city + suggestion;
+			$('body').css({"background-color": bgColor, "color": color});
+			$('img.sweater').attr("src", "images/" + image + ".png");
 
- 			//wind factor
- 			if(weatherWidget.weatherData.wind > 30){
- 				wind = wind + ", it's so windy today you might as well wear a blanket"
- 			}else if (weatherWidget.weatherData.wind === 0){
- 				wind = wind + ", no wind today! Hell yeah!"
- 			}else if (weatherWidget.weatherData.wind < 10){
- 				wind = wind + ", just enough wind to make you wanna add another layer!"
- 			}else if (weatherWidget.weatherData.wind < 30){
- 				wind = wind + ", it's sorta windy, try to repurpose your sweater as a scarf!"
- 			}else {
- 				wind = wind + ", just enough wind to make you wanna add another layer!"
- 			}
+ 			tempFactor = "The temp is " + temp + "\xB0C" + (
+ 				temp >  30 ? ", it's hot and you probably don't need a sweater." :
+ 				temp >  22 ? ", time to let the layers drop!" :
+ 				temp >  15 ? ", time to get creative with transportation!" :
+ 				temp >  10 ? ", try out a box jacket in strawberry, sky-blue or emerald." :
+ 				temp >   0 ? ", it's pretty cold out there and you will probably need a coat!" :
+ 				temp === 0 ? ", zero-degree weather doesn't have to suck, add an oversized jacket!" :
+ 				             " and cold weather doesn't have to suck, add an oversized coat! (and a ton of other cozy things)."
+ 			);
 
+ 			windFactor = "That wind factor is " + wind + "km/hour" + (
+ 				wind > 30 ? ", it's so windy today you might as well wear a blanket." :
+ 				wind > 10 ? ", it's sorta windy, try to repurpose your sweater as a scarf!" :
+ 				wind >  0 ? ", just enough wind to make you wanna add another layer!" :
+ 				            ", no wind today! Hell yeah!"
+ 			);
+
+ 			forecast = "Tomorrow's going to be " + tomorrow.toLowerCase() + ".";
 
  			$(".search").hide();
- 			$(".weather_string").text(conditions);
- 			$(".temp").text(temp);
-	 		$(".wind").text(wind);
+ 			$(".weather_string").text(weatherMood);
+ 			$(".temp").text(tempFactor);
+	 		$(".wind").text(windFactor);
 	 		$(".forecast").text(forecast);
 
 	 		$('.output').show();

@@ -338,7 +338,7 @@ header .subtitle {
 }
 
 .sweater-info .search .warning {
-  display: none;
+  opacity: 0;
 }
 
 .sweater-info .output .button {
@@ -378,7 +378,7 @@ header .subtitle {
   color: #355c7d;
   border: 1px solid #c1c1c1;
   border: none;
-  -o-transition: .5s;
+  -o-transition: 0.7s;
   -o-transition: background 0.7s linear;
   -moz-transition: background 0.7s linear;
   -khtml-transition: background 0.7s linear;
