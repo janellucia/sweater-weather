@@ -75,49 +75,41 @@
 				case "Snow":
 					suggestion = ". You might want to dig out that thick and cozy sweater because baby, it's cold outside!";
 					bgColor = "#355c7d";
-					color = "#f4f4f4";
 					image = "snow";
 					break;
 				case "Rain" :
 					suggestion = ", so don't forget to wear something waterproof!";
 					bgColor = "#6c5b7b";
-					color = "#f4f4f4";
 					image = "rain";
 					break;
 				case "Overcast":
 					suggestion = ", so break out that oversized comfy sweater, you know, the one you stole from your dad.";
 					bgColor = "#9099a2";
-					color = "#f4f4f4";
 					image = "overcast";
 					break;
 				case "Mostly Cloudy":
 					suggestion = ", sounds pretty iffy out there! Better bring an extra layer you might need it!";
 					bgColor = "#c06c84";
-					color = "#f4f4f4";
 					image = "cloudy";
 					break;
 				case "Clear":
 					suggestion = ". Oh, yeah! Break out those seasonally questionable sunglasses, you're going to need them!";
 					bgColor = "#f8b195";
-					color = "#355c7d";
 					image = "clear";
 					break;
 				case "Drizzle":
 					suggestion = ", so wear a hat or bring your umbrella!";
 					bgColor = "#c06c84";
-					color = "#f4f4f4";
 					image = "rain";
 					break;
 				case "Fog":
 					suggestion = ". A misty day calls for a cozy oversized sweater!";
 					bgColor = "#c06c84";
-					color = "#f4f4f4";
 					image = "options/rb-two-jackets";
 					break;
 				default:
 					suggestion = ": Hey, it's gonna be a good day!";
 					bgColor = "#f8b195";
-					color = "#355c7d";
 					image = "options/rb-sweater-family";
 			}
 

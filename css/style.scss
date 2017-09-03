@@ -10,131 +10,130 @@
 }
 body{
 	letter-spacing:1px;
-	font-family: 'Raleway', sans-serif;
-	font-weight:600;
+	font-family: 'Droid Serif', serif;
+	font-weight:300;
 	color: $swWhite;
-	background-color:$swGrey;
-
+	background-color:$swPlum;
+	padding: 5% 0;	
 }
 
 
 
 
 h1, h2, h3, h4, h5, h6, p{
-	font-weight:600;
-	@include responsive-font(2vw, 16px, 50px);
+	font-size: 2em;
+	
+}
+
+main{
+	border: 2px solid white; 
+	padding: 5%;
+	header{
+		padding: 2% 0 3% 0;
+		display: flex;
+		flex-direction: column;
+		.title{
+			font-size: 4.5em;
+			font-family: 'Oswald', sans-serif;
+			text-align: center;
+			margin: 0;
+			text-transform: uppercase;
+			a{
+				text-decoration: none;
+				color: white;
+				cursor: pointer;
+			}
+		}
+		.subtitle{
+			font-size: 1.5em;
+			font-family: 'Droid Serif', serif;
+			text-align: center;
+			margin-top: 0;
+			font-weight: 200;
+		}
+	}
 
 }
-header{
-	padding: 3% 0;
-	display: flex;
-	// justify-content: center;
-	// align-items: center;
-	flex-direction: column;
-	.title{
-		@include responsive-font(8vw, 80px, 150px);
-		font-family: 'Amatica SC', cursive;
-		text-align: center;
-		margin-bottom: 0;
-	}
-	.subtitle{
-		@include responsive-font(3vw, 20px, 50px);
-		font-family: 'Amatica SC', cursive;
-		text-align: center;
-		// margin: 0;
-	}
-}
+
 
 .sweater-info{
-	// padding: 10% 0;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	margin: 0;
 	.search{
 		display: flex;
-		// flex-direction: column;
-		// align-items: center;
 		flex-wrap: wrap;
 		justify-content: center;
 		label{
-			@include responsive-font(3vw, 20px, 50px);
+			font-size: 1.5em;
 			width: 100%;
 			text-align: center;
+			margin-bottom: 20px;
 		}
-		input[type="text"]{
-			width: 40%;
-			padding: 2%;
-		}
-		input[type="submit"]{
-			width: 10%;
-			padding: 2%;
-		    background: $swWhite;
-		    border: 1px solid $swWhite;
-		    @include responsive-font(1.2vw, 14px, 18px);
-			text-decoration: none;
-		    letter-spacing: 1px;
-		    text-align: center;
-		    color: $swDarkNight;
-		}
-		input[type="submit"]:focus{
-			background: darken($swWhite, 40%);
-			color: $swDarkNight;
-			border:none;
-			outline: none;
-		}
-		input[type="submit"]:hover{
-			background: darken($swWhite, 20%);
-			color: $swDarkNight;
-			border:1px solid darken($swWhite, 20%);
-			border:none;
-			 -o-transition:.5s;
-			-o-transition: background 0.7s linear;
-			-moz-transition: background 0.7s linear;
-			-khtml-transition: background 0.7s linear;
-			-webkit-transition: background 0.7s linear;
-			-ms-transition: background 0.7s linear;
-			transition: background 0.7s linear;
+		.inputs{
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			input[type="text"]{
+				width: 40%;
+				padding: 2%;
+				border: none;
+			}
+			input[type="submit"]{
+				width: 20%;
+				padding: 2% 3%;
+				background: $swDarkNight;
+				border: none;
+				font-size: 1em;
+				text-decoration: none;
+				letter-spacing: 1px;
+				text-align: center;
+				color: $swWhite;
+			}
+			input[type="submit"]:hover, input[type="submit"]:focus{
+				background: lighten($swDarkNight, 10%);
+				border:none;
+				transition:0.3s linear;
+			}
 		}
 		.warning{
 			opacity: 0;
+			text-align: center;
+			font-size: 0.7em;
 		}
 	}
 	.output{
+		font-size: 0.7em;
 		// display: flex;
 		// flex-direction: column;
 		// justify-content: center;
-		.button{
-			width: 40%;
-			margin: 5% 0;
+		button{
+			width: 33%;
+			margin: 5% 33% 5% 33%;
 			padding: 2%;
-		    background: $swWhite;
-		    border: 1px solid $swWhite;
-		    @include responsive-font(1.2vw, 14px, 18px);
-			text-decoration: none;
-		    letter-spacing: 1px;
-		    text-align: center;
-		    color: $swDarkNight;
+			background: transparent;
+			border: 2px solid white;
+			a{
+				text-decoration: none;
+				letter-spacing: 1px;
+				text-align: center;
+				color: white;
+				text-transform: uppercase;
+				font-size: 1.5em;
+			}
+			
 		}
-		.button:focus{
-			background: darken($swWhite, 40%);
-			color: white;
-			border:none;
-			outline: none;
+		button:focus, button:hover{
+			background: rgba(white, 0.1);
+			// border: 2px solid transparent;
+			transition: 0.3s linear;
+			a{
+				// color: $swPlum;
+			}
 		}
-		.button:hover{
-			background: darken($swWhite, 20%);
-			color: $swDarkNight;
-			border:1px solid darken($swWhite, 20%);
-			border:none;
-			 -o-transition:0.7s;
-			-o-transition: background 0.7s linear;
-			-moz-transition: background 0.7s linear;
-			-khtml-transition: background 0.7s linear;
-			-webkit-transition: background 0.7s linear;
-			-ms-transition: background 0.7s linear;
-			transition: background 0.7s linear;
-		}
-
 	}
 	.sweater-pic{
     	height: 300px;
@@ -148,12 +147,6 @@ header{
 }
 
 
-.twitter{
-	padding: 5% 0;
-	display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 
 
@@ -162,11 +155,32 @@ header{
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin: 50px 0 30px 0;
+	.twitter{
+		// width: 100%;
+		padding: 1% 2%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #4099ff;
+		border: none;
+
+		a, span{
+			text-decoration: none;
+			color: white;
+			margin: 0 3px;
+		}
+	}
+	.twitter:hover, .twitter:focus{
+		background: lighten(#4099ff, 5%);
+	}
 	p{
-		margin: 0;
+		margin: 15px 0 0 0;
+		font-size: 1em;
 		a{
 			text-decoration: none;
 			color: $swWhite;
+			cursor: pointer;
 		}
 	}
 }
@@ -182,15 +196,79 @@ header{
 // All Media Queries
 
 // Landscape phones and tablet
-@media (max-width: 767px) {
+@media (min-width: 481px) and (max-width: 768px) {
 	// turn off wrapper margin 
 	.wrapper{
-		width: 100%;
+		width: 90%;
 	}
+	main{
+		header{
+			.title{
+				font-size: 3em;
+			}
+			.subtitle{
+				font-size: 1.5em;
+			}
+		}
+	}
+	.sweater-info{
+		.search{
+			label{
+				font-size: 1em;
+			}
+			.warning{
+				font-size: 0.5em;
+			}
+		}
+		.output{
+			font-size: 0.6em;
+			button{
+				width: 50%;
+				margin: 5% 25% 5% 25%;
+			}
+		}
+	}
+
     
 }
  
 // Landscape phones and down
 @media (max-width: 480px) {
+
+	.wrapper{
+		width: 95%;
+	}
+	main{
+		
+		header{
+
+			.title{
+				font-size: 2em;
+
+			}
+			.subtitle{
+				font-size: 0.8em;
+
+			}
+		}
+
+	}
+	.sweater-info{
+		.search{
+			label{
+				font-size: 1em;
+			}
+			.warning{
+				font-size: 0.5em;
+			}
+		}
+		.output{
+			font-size: 0.5em;
+			button{
+				width: 50%;
+				margin: 5% 25% 5% 25%;
+			}
+		}
+	}
  
 }

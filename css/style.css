@@ -191,76 +191,56 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 
 body {
   letter-spacing: 1px;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 600;
-  color: #f4f4f4;
-  background-color: #6c767e;
+  font-family: 'Droid Serif', serif;
+  font-weight: 300;
+  color: #fff;
+  background-color: #c06c84;
+  padding: 5% 0;
 }
 
 h1, h2, h3, h4, h5, h6, p {
-  font-weight: 600;
-  font-size: 2vw;
+  font-size: 2em;
 }
 
-@media (max-width: 800px) {
-  h1, h2, h3, h4, h5, h6, p {
-    font-size: 16px;
-  }
+main {
+  border: 2px solid white;
+  padding: 5%;
 }
 
-@media (min-width: 2500px) {
-  h1, h2, h3, h4, h5, h6, p {
-    font-size: 50px;
-  }
-}
-
-header {
-  padding: 3% 0;
+main header {
+  padding: 2% 0 3% 0;
   display: flex;
   flex-direction: column;
 }
 
-header .title {
-  font-size: 8vw;
-  font-family: 'Amatica SC', cursive;
+main header .title {
+  font-size: 4.5em;
+  font-family: 'Oswald', sans-serif;
   text-align: center;
-  margin-bottom: 0;
+  margin: 0;
+  text-transform: uppercase;
 }
 
-@media (max-width: 1000px) {
-  header .title {
-    font-size: 80px;
-  }
+main header .title a {
+  text-decoration: none;
+  color: white;
+  cursor: pointer;
 }
 
-@media (min-width: 1875px) {
-  header .title {
-    font-size: 150px;
-  }
-}
-
-header .subtitle {
-  font-size: 3vw;
-  font-family: 'Amatica SC', cursive;
+main header .subtitle {
+  font-size: 1.5em;
+  font-family: 'Droid Serif', serif;
   text-align: center;
-}
-
-@media (max-width: 666.66667px) {
-  header .subtitle {
-    font-size: 20px;
-  }
-}
-
-@media (min-width: 1666.66667px) {
-  header .subtitle {
-    font-size: 50px;
-  }
+  margin-top: 0;
+  font-weight: 200;
 }
 
 .sweater-info {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 .sweater-info .search {
@@ -270,121 +250,73 @@ header .subtitle {
 }
 
 .sweater-info .search label {
-  font-size: 3vw;
+  font-size: 1.5em;
   width: 100%;
   text-align: center;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 666.66667px) {
-  .sweater-info .search label {
-    font-size: 20px;
-  }
+.sweater-info .search .inputs {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (min-width: 1666.66667px) {
-  .sweater-info .search label {
-    font-size: 50px;
-  }
-}
-
-.sweater-info .search input[type="text"] {
+.sweater-info .search .inputs input[type="text"] {
   width: 40%;
   padding: 2%;
+  border: none;
 }
 
-.sweater-info .search input[type="submit"] {
-  width: 10%;
-  padding: 2%;
-  background: #f4f4f4;
-  border: 1px solid #f4f4f4;
-  font-size: 1.2vw;
+.sweater-info .search .inputs input[type="submit"] {
+  width: 20%;
+  padding: 2% 3%;
+  background: #5d90bb;
+  border: none;
+  font-size: 1em;
   text-decoration: none;
   letter-spacing: 1px;
   text-align: center;
-  color: #355c7d;
+  color: #fff;
 }
 
-@media (max-width: 1166.66667px) {
-  .sweater-info .search input[type="submit"] {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 1500px) {
-  .sweater-info .search input[type="submit"] {
-    font-size: 18px;
-  }
-}
-
-.sweater-info .search input[type="submit"]:focus {
-  background: #8e8e8e;
-  color: #355c7d;
+.sweater-info .search .inputs input[type="submit"]:hover, .sweater-info .search .inputs input[type="submit"]:focus {
+  background: #81a9ca;
   border: none;
-  outline: none;
-}
-
-.sweater-info .search input[type="submit"]:hover {
-  background: #c1c1c1;
-  color: #355c7d;
-  border: 1px solid #c1c1c1;
-  border: none;
-  -o-transition: .5s;
-  -o-transition: background 0.7s linear;
-  -moz-transition: background 0.7s linear;
-  -khtml-transition: background 0.7s linear;
-  -webkit-transition: background 0.7s linear;
-  -ms-transition: background 0.7s linear;
-  transition: background 0.7s linear;
+  transition: 0.3s linear;
 }
 
 .sweater-info .search .warning {
   opacity: 0;
+  text-align: center;
+  font-size: 0.7em;
 }
 
-.sweater-info .output .button {
-  width: 40%;
-  margin: 5% 0;
+.sweater-info .output {
+  font-size: 0.7em;
+}
+
+.sweater-info .output button {
+  width: 33%;
+  margin: 5% 33% 5% 33%;
   padding: 2%;
-  background: #f4f4f4;
-  border: 1px solid #f4f4f4;
-  font-size: 1.2vw;
+  background: transparent;
+  border: 2px solid white;
+}
+
+.sweater-info .output button a {
   text-decoration: none;
   letter-spacing: 1px;
   text-align: center;
-  color: #355c7d;
-}
-
-@media (max-width: 1166.66667px) {
-  .sweater-info .output .button {
-    font-size: 14px;
-  }
-}
-
-@media (min-width: 1500px) {
-  .sweater-info .output .button {
-    font-size: 18px;
-  }
-}
-
-.sweater-info .output .button:focus {
-  background: #8e8e8e;
   color: white;
-  border: none;
-  outline: none;
+  text-transform: uppercase;
+  font-size: 1.5em;
 }
 
-.sweater-info .output .button:hover {
-  background: #c1c1c1;
-  color: #355c7d;
-  border: 1px solid #c1c1c1;
-  border: none;
-  -o-transition: 0.7s;
-  -o-transition: background 0.7s linear;
-  -moz-transition: background 0.7s linear;
-  -khtml-transition: background 0.7s linear;
-  -webkit-transition: background 0.7s linear;
-  -ms-transition: background 0.7s linear;
-  transition: background 0.7s linear;
+.sweater-info .output button:focus, .sweater-info .output button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transition: 0.3s linear;
 }
 
 .sweater-info .sweater-pic {
@@ -396,27 +328,42 @@ header .subtitle {
   height: 100%;
 }
 
-.twitter {
-  padding: 5% 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .footer {
   flex-direction: column;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 50px 0 30px 0;
+}
+
+.footer .twitter {
+  padding: 1% 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #4099ff;
+  border: none;
+}
+
+.footer .twitter a, .footer .twitter span {
+  text-decoration: none;
+  color: white;
+  margin: 0 3px;
+}
+
+.footer .twitter:hover, .footer .twitter:focus {
+  background: #5aa7ff;
 }
 
 .footer p {
-  margin: 0;
+  margin: 15px 0 0 0;
+  font-size: 1em;
 }
 
 .footer p a {
   text-decoration: none;
-  color: #f4f4f4;
+  color: #fff;
+  cursor: pointer;
 }
 
 .sideicon {
@@ -427,8 +374,52 @@ header .subtitle {
   display: none;
 }
 
-@media (max-width: 767px) {
+@media (min-width: 481px) and (max-width: 768px) {
   .wrapper {
-    width: 100%;
+    width: 90%;
+  }
+  main header .title {
+    font-size: 3em;
+  }
+  main header .subtitle {
+    font-size: 1.5em;
+  }
+  .sweater-info .search label {
+    font-size: 1em;
+  }
+  .sweater-info .search .warning {
+    font-size: 0.5em;
+  }
+  .sweater-info .output {
+    font-size: 0.6em;
+  }
+  .sweater-info .output button {
+    width: 50%;
+    margin: 5% 25% 5% 25%;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    width: 95%;
+  }
+  main header .title {
+    font-size: 2em;
+  }
+  main header .subtitle {
+    font-size: 0.8em;
+  }
+  .sweater-info .search label {
+    font-size: 1em;
+  }
+  .sweater-info .search .warning {
+    font-size: 0.5em;
+  }
+  .sweater-info .output {
+    font-size: 0.5em;
+  }
+  .sweater-info .output button {
+    width: 50%;
+    margin: 5% 25% 5% 25%;
   }
 }
